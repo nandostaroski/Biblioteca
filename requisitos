@@ -1,0 +1,11 @@
+1) dados de Livros: planilha ODT (ainda vou separar "dadosLivro"), com os campos: codigoDeBarras, idLivro, exemplar, dataAquisicaoExemplar, dataCadastroSistema, dadosLivro, classificacao, areaConhecimento
+2) objetivo: tratar o empréstimo e a devolução de livros por alunos. Fornecer alguns relatórios (a serem especificados).
+3) requisitos do trabalho:
+3.1) importar os livros do acervo (planilha ODT)
+3.2) fazer um DAO transparente; usar pelo menos 2 tipos de armazenamento (binário, arquivo-texto, XML, banco de dados, etc).
+3.3) fazer casos de teste
+3.4) usar hashmap para consultar livro (em vez de ArrayList)
+3.5) os livros não devem ficar carregados na memória, devem ser instanciados sob demanda
+3.6) usar identificador único nos modelos, para identificar unicamente um objeto (útil no mapeamento em banco de dados)
+3.7) a lógica de negócios deve estar no modelo
+3.8) fazer especificação do nome do arquivo de armazenamento para que o mesmo funcione no windows e no linux

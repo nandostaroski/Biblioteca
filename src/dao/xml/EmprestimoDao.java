@@ -1,4 +1,4 @@
-package dao;
+package dao.xml;
 
 public class EmprestimoDao {
 

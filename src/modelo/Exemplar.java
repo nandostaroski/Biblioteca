@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Exemplar {
 	private int cdBarras;
@@ -12,6 +13,15 @@ public class Exemplar {
 		this.cdBarras = cdBarras;
 		this.exemplar = exemplar;
 		this.dataAquisicaoExemplar = dataAquisicaoExemplar;
+	}
+
+	public Exemplar(String cdBarras, String exemplar, String dataAquisicaoExemplar) {
+		int cdBarrasInt = Integer.parseInt(cdBarras);
+		int exemplarInt	= Integer.parseInt(exemplar);
+		LocalDate dateLD = LocalDate.parse(dataAquisicaoExemplar,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.cdBarras = cdBarrasInt;
+		this.exemplar = exemplarInt;
+		this.dataAquisicaoExemplar = dateLD;
 	}
 
 	public int getCdBarras() {
