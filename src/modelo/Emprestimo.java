@@ -1,12 +1,20 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable {
+	
+	private long cdEmprestimo;
 	private Aluno aluno;
 	private Livro livro;
 	private LocalDate dtEmprestimo;
 	private LocalDate dtDevolucao;
+	
+
+	public Emprestimo() {
+		cdEmprestimo = System.currentTimeMillis();
+	}
 
 	public Aluno getAluno() {
 		return aluno;
@@ -24,4 +32,23 @@ public class Emprestimo {
 		return livro;
 	}
 
+	public long getCdEmprestimo() {
+		return cdEmprestimo;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Emprestimo))
+			return false;
+		Emprestimo other = (Emprestimo) obj;
+		if (cdEmprestimo != other.cdEmprestimo)
+			return false;
+		return true;
+	}
+		
 }

@@ -1,13 +1,18 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Exemplar {
+public class Exemplar implements Serializable{
 	private int cdBarras;
 	private int exemplar;
 	private LocalDate dataAquisicaoExemplar;
 
+	public Exemplar() {
+		
+	}
+	
 	public Exemplar(int cdBarras, int exemplar, LocalDate dataAquisicaoExemplar) {
 		super();
 		this.cdBarras = cdBarras;

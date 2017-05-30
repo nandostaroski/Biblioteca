@@ -1,11 +1,16 @@
 package modelo;
 
-public class Aluno {
+import java.io.Serializable;
+
+public class Aluno implements Serializable {
+	
+	private long codAluno;
 	private String cpf;
 	private String nome;
 
 	public Aluno(String cpf, String nome) {
 		super();
+		codAluno = System.currentTimeMillis();
 		this.cpf = cpf;
 		this.nome = nome;
 	}
@@ -26,6 +31,7 @@ public class Aluno {
 		this.nome = nome;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -35,12 +41,9 @@ public class Aluno {
 		if (!(obj instanceof Aluno))
 			return false;
 		Aluno other = (Aluno) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
+		if (codAluno != other.codAluno)
 			return false;
 		return true;
 	}
-	
+
 }
