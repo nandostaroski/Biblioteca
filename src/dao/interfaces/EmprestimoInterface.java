@@ -1,9 +1,7 @@
-
 package dao.interfaces;
 
 import java.io.IOException;
 import modelo.Emprestimo;
-
 
 public interface EmprestimoInterface {
 

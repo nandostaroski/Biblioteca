@@ -12,39 +12,39 @@ public class AlunoDao extends DAOGenerico implements AlunoInterfaceDAO {
             + "alunos.xml";
 
     @Override
-    public HashMap<String, Aluno> ler() throws IOException {
+    public HashMap<Long, Aluno> ler() throws IOException {
         return carregarArquivo(endereco);
     }
 
     @Override
-    public <String, Aluno> void salvar(HashMap<String, Aluno> map) throws IOException {
+    public <Long, Aluno> void salvar(HashMap<Long, Aluno> map) throws IOException {
         salvarArquivo(map, endereco);
     }
 
     @Override
-    public Aluno buscarAluno(String idAluno) throws IOException {
-        HashMap<String, Aluno> alunos = ler();
-        return alunos.get(idAluno);
+    public Aluno buscarAluno(long codAluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        return alunos.get(codAluno);
     }
 
     @Override
     public void salvarAluno(Aluno aluno) throws IOException {
-        HashMap<String, Aluno> alunos = ler();
-        alunos.put(aluno.getCpf(), aluno);
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.put(aluno.getCodAluno(), aluno);
         salvar(alunos);
     }
 
     @Override
     public void removerAluno(Aluno aluno) throws IOException {
-        HashMap<String, Aluno> alunos = ler();
-        alunos.remove(aluno.getCpf());
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.remove(aluno.getCodAluno());
         salvar(alunos);
     }
 
     @Override
-    public void removerAluno(String cpf) throws IOException {
-        HashMap<String, Aluno> alunos = ler();
-        alunos.remove(cpf);
+    public void removerAluno(long codAluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.remove(codAluno);
         salvar(alunos);
     }
 
