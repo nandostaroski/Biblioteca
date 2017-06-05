@@ -2,57 +2,76 @@ package ferramentas;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import modelo.Exemplar;
 import modelo.Livro;
 
 public class ImportacaoLivros {
-	public HashMap<Integer, Livro> importarLivros() throws FileNotFoundException {
 
-		HashMap<Integer, Livro> livros = new HashMap<Integer, Livro>();
-		String pastaDestino = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.csv";
-		int contadorExemplar = 0;
-		int contadorLivro = 0;
-		Scanner teclado = null;
-		String linha;
-		String[] colunas;
+    public static void main(String[] args) {
+        dao.binario.LivroDao daoBin = new dao.binario.LivroDao();
+        dao.xml.LivroDao daoXML = new dao.xml.LivroDao();
+        try {
+            HashMap<Integer, Livro> importarLivros = importarLivros();
+            daoBin.salvar(importarLivros);
+            daoXML.salvar(importarLivros);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ImportacaoLivros.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ImportacaoLivros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-		try {
+    public static HashMap<Integer, Livro> importarLivros() throws FileNotFoundException {
 
-			teclado = new Scanner(new File(pastaDestino));
+        HashMap<Integer, Livro> livros = new HashMap<>();
+        String pastaDestino = "livros.csv";
+        int contadorExemplar = 0;
+        int contadorLivro = 0;
+        Scanner teclado = null;
+        String linha;
+        String[] colunas;
 
-			while (teclado.hasNext()) {
+        try {
 
-				linha = (String) teclado.nextLine();
+            teclado = new Scanner(new File(pastaDestino));
 
-				if (linha.contains("codigoDeBarras")) {
-					continue;
-				} else {
-					colunas = linha.split("\\|");
-					if (colunas.length == 13) {
-						if (colunas[1] != null && livros.get(Integer.parseInt(colunas[1])) != null) {
-							((Livro) livros.get(Integer.parseInt(colunas[1])))
-									.AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
-							contadorLivro++;
-						} else {
-							Livro livro = new Livro(colunas[0], colunas[1], colunas[2], colunas[3], colunas[4],
-									colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
-									colunas[11], colunas[12]);
-							livros.put(livro.getIdLivro(), livro);
-						}
-						contadorExemplar++;
-					}
-				}
+            while (teclado.hasNext()) {
 
-			}
+                linha = (String) teclado.nextLine();
 
-		} finally {
-			teclado.close();
-		}
+                if (linha.contains("codigoDeBarras")) {
+                } else {
+                    colunas = linha.split("\\|");
+                    if (colunas.length == 13) {
+                        if (colunas[1] != null && livros.get(Integer.parseInt(colunas[1])) != null) {
+                            ((Livro) livros.get(Integer.parseInt(colunas[1])))
+                                    .AdicionaExemplar(new Exemplar(colunas[0], colunas[2], colunas[3]));
+                            contadorLivro++;
+                        } else {
+                            Livro livro = new Livro(colunas[0], colunas[1], colunas[2], colunas[3], colunas[4],
+                                    colunas[5], colunas[6], colunas[7], colunas[8], colunas[9], colunas[10],
+                                    colunas[11], colunas[12]);
+                            livros.put(livro.getIdLivro(), livro);
+                        }
+                        contadorExemplar++;
+                    }
+                }
 
-		System.out.printf("Foram importados %s livros e %s exemplares." + "\r\n", contadorLivro, contadorExemplar);
-		return livros;
-	}
+            }
+
+        } finally {
+            if (teclado != null) {
+                teclado.close();
+            }
+        }
+
+        System.out.printf("Foram importados %s livros e %s exemplares." + "\r\n", contadorLivro, contadorExemplar);
+        return livros;
+    }
 }

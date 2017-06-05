@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import modelo.Emprestimo;
 
-public class EmprestimoDao extends DAOBinarioGenerico {
+public class EmprestimoDao extends DAOGenerico {
 	private String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
 			+ "emprestimos.bin";
 

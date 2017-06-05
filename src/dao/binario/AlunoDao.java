@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import modelo.Aluno;
 
-public class AlunoDao extends DAOBinarioGenerico {
+public class AlunoDao extends DAOGenerico {
 	private String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
 	+ "alunos.bin";
 	

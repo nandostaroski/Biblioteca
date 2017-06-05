@@ -6,7 +6,7 @@ import java.util.HashMap;
 import dao.interfaces.LivroInterfaceDAO;
 import modelo.Livro;
 
-public class LivroDao extends DAOBinarioGenerico implements LivroInterfaceDAO {
+public class LivroDao extends DAOGenerico implements LivroInterfaceDAO {
 
 	private String endereco = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.bin";
 

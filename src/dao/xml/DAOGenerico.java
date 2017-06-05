@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 import dao.interfaces.InterfaceDAO;
 
-public abstract class DAOXMLGenerico implements  InterfaceDAO {
+public abstract class DAOGenerico implements  InterfaceDAO {
 
 	private File verificaArquivo(String diretorio) throws IOException {
 		File arquivo = new File(diretorio);
