@@ -21,8 +21,5 @@ public class App {
             System.out.println("ERRO: " + e.getMessage());
         }
         
-        int a = true ? 0 : 1;
-        System.out.println(a);
-        
     }
 }
