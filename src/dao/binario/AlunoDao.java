@@ -22,22 +22,29 @@ public class AlunoDao extends DAOGenerico implements AlunoInterfaceDAO {
     }
 
     @Override
-    public Aluno buscarAluno(int idAluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Aluno buscarAluno(long codAluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        return alunos.get(codAluno);
     }
 
     @Override
     public void salvarAluno(Aluno aluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.put(aluno.getCodAluno(), aluno);
+        salvar(alunos);
     }
 
     @Override
     public void removerAluno(Aluno aluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.remove(aluno.getCodAluno());
+        salvar(alunos);
     }
 
     @Override
-    public void removerAluno(int idAluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void removerAluno(long codAluno) throws IOException {
+        HashMap<Long, Aluno> alunos = ler();
+        alunos.remove(codAluno);
+        salvar(alunos);
     }
 }

@@ -8,37 +8,44 @@ import modelo.Aluno;
 
 public class AlunoDao extends DAOGenerico implements AlunoInterfaceDAO {
 
-    private String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
+    private final String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
             + "alunos.xml";
 
     @Override
-    public HashMap<Long, Aluno> ler() throws IOException {
+    public HashMap<String, Aluno> ler() throws IOException {
         return carregarArquivo(endereco);
     }
 
     @Override
-    public <Long, Aluno> void salvar(HashMap<Long, Aluno> map) throws IOException {
+    public <String, Aluno> void salvar(HashMap<String, Aluno> map) throws IOException {
         salvarArquivo(map, endereco);
     }
 
     @Override
-    public Aluno buscarAluno(int idAluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Aluno buscarAluno(String idAluno) throws IOException {
+        HashMap<String, Aluno> alunos = ler();
+        return alunos.get(idAluno);
     }
 
     @Override
     public void salvarAluno(Aluno aluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        HashMap<String, Aluno> alunos = ler();
+        alunos.put(aluno.getCpf(), aluno);
+        salvar(alunos);
     }
 
     @Override
     public void removerAluno(Aluno aluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        HashMap<String, Aluno> alunos = ler();
+        alunos.remove(aluno.getCpf());
+        salvar(alunos);
     }
 
     @Override
-    public void removerAluno(int idAluno) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void removerAluno(String cpf) throws IOException {
+        HashMap<String, Aluno> alunos = ler();
+        alunos.remove(cpf);
+        salvar(alunos);
     }
 
 }
