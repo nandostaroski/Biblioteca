@@ -8,7 +8,7 @@ import modelo.Livro;
 
 public class LivroDao extends DAOGenerico implements LivroInterfaceDAO {
 
-	private String endereco = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.bin";
+	private final String endereco = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.bin";
 
 	@Override
 	public HashMap<Integer, Livro> ler() throws IOException {
