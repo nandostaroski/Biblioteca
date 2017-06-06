@@ -3,7 +3,7 @@ package dao.interfaces;
 import java.io.IOException;
 import modelo.Aluno;
 
-public interface AlunoInterfaceDAO {
+public interface AlunoDAOInterface {
 
     public Aluno buscarAluno(long codAluno) throws IOException;
 

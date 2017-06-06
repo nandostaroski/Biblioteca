@@ -1,12 +1,12 @@
 package dao.binario;
 
-import dao.interfaces.EmprestimoInterface;
 import java.io.IOException;
 import java.util.HashMap;
 
 import modelo.Emprestimo;
+import dao.interfaces.EmprestimoDAOInterface;
 
-public class EmprestimoDao extends DAOGenerico implements EmprestimoInterface {
+public class EmprestimoDao extends DAOGenerico implements EmprestimoDAOInterface {
 
     private final String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
             + "emprestimos.bin";
@@ -22,22 +22,29 @@ public class EmprestimoDao extends DAOGenerico implements EmprestimoInterface {
     }
 
     @Override
-    public Emprestimo buscarEmprestimo(int idEmprestimo) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Emprestimo buscarEmprestimo(long cdEmprestimo) throws IOException {
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        return emprestimos.get(cdEmprestimo);
     }
 
     @Override
     public void salvarEmprestimo(Emprestimo emprestimo) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        emprestimos.put(emprestimo.getCdEmprestimo(), emprestimo);
+        salvar(emprestimos);
     }
 
     @Override
     public void removerEmprestimo(Emprestimo emprestimo) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        emprestimos.remove(emprestimo.getCdEmprestimo());
+        salvar(emprestimos);
     }
 
     @Override
-    public void removerEmprestimo(int idEmprestimo) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removerEmprestimo(long cdEmprestimo) throws IOException {
+        HashMap<Long, Emprestimo> emprestimos = ler();
+        emprestimos.remove(cdEmprestimo);
+        salvar(emprestimos);
     }
 }

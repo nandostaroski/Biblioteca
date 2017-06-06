@@ -3,7 +3,7 @@ package dao.interfaces;
 import java.io.IOException;
 import java.util.HashMap;
 
-public interface InterfaceDAO {
+public interface DAOInterface {
 
     public abstract <K, V> HashMap<K, V> ler() throws IOException;
 

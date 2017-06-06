@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import modelo.Livro;
 
-public interface LivroInterfaceDAO {
+public interface LivroDAOInterface {
 
     public Livro buscarLivro(int idLivro) throws IOException;
 

@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import dao.interfaces.InterfaceDAO;
+import dao.interfaces.DAOInterface;
 
-public abstract class DAOGenerico implements InterfaceDAO {
+public abstract class DAOGenerico implements DAOInterface {
 
     private File verificaArquivo(String diretorio) throws IOException {
         File arquivo = new File(diretorio);

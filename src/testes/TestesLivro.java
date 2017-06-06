@@ -3,14 +3,14 @@ package testes;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import dao.interfaces.LivroInterfaceDAO;
 import modelo.Livro;
+import dao.interfaces.LivroDAOInterface;
 
 public class TestesLivro {
 
-    LivroInterfaceDAO dao;
+    LivroDAOInterface dao;
 
-    public TestesLivro(LivroInterfaceDAO dao) {
+    public TestesLivro(LivroDAOInterface dao) {
         this.dao = dao;
     }
 

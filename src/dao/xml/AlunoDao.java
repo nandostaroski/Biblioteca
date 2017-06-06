@@ -1,12 +1,12 @@
 package dao.xml;
 
-import dao.interfaces.AlunoInterfaceDAO;
 import java.io.IOException;
 import java.util.HashMap;
 
 import modelo.Aluno;
+import dao.interfaces.AlunoDAOInterface;
 
-public class AlunoDao extends DAOGenerico implements AlunoInterfaceDAO {
+public class AlunoDao extends DAOGenerico implements AlunoDAOInterface {
 
     private final String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
             + "alunos.xml";

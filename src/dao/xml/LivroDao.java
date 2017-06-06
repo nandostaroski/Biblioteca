@@ -3,10 +3,10 @@ package dao.xml;
 import java.io.IOException;
 import java.util.HashMap;
 
-import dao.interfaces.LivroInterfaceDAO;
 import modelo.Livro;
+import dao.interfaces.LivroDAOInterface;
 
-public class LivroDao extends DAOGenerico implements LivroInterfaceDAO {
+public class LivroDao extends DAOGenerico implements LivroDAOInterface {
 
     private String endereco = System.getProperty("user.home") + System.getProperty("file.separator") + "livros.xml";
 
