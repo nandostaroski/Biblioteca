@@ -2,7 +2,6 @@ package testes;
 
 import dao.interfaces.AlunoDAOInterface;
 import java.io.IOException;
-import java.time.LocalDate;
 import modelo.Aluno;
 
 
