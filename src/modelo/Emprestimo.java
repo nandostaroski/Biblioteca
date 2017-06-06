@@ -52,10 +52,7 @@ public class Emprestimo implements Serializable {
             return false;
         }
         Emprestimo other = (Emprestimo) obj;
-        if (cdEmprestimo != other.cdEmprestimo) {
-            return false;
-        }
-        return true;
+        return cdEmprestimo == other.cdEmprestimo;
     }
-
+    
 }

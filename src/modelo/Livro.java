@@ -38,8 +38,8 @@ public class Livro implements Serializable {
         this.isbn = isbn;
         this.editora = editora;
         this.paginas = paginas;
-        exemplares = new HashMap<Integer, Exemplar>();
-        AdicionaExemplar(new Exemplar(cdBarras, exemplar, dataAquisicaoExemplar));
+        exemplares = new HashMap<>();
+        exemplares.put(cdBarras, new Exemplar(cdBarras, exemplar, dataAquisicaoExemplar));
     }
 
     public Livro(String cdBarras, String idLivro, String exemplar, String dataAquisicaoExemplar,
@@ -55,8 +55,8 @@ public class Livro implements Serializable {
         this.isbn = isbn;
         this.editora = editora;
         this.paginas = Integer.parseInt(paginas);
-        exemplares = new HashMap<Integer, Exemplar>();
-        AdicionaExemplar(new Exemplar(Integer.parseInt(cdBarras), Integer.parseInt(exemplar),
+        exemplares = new HashMap<>();
+        exemplares.put(Integer.parseInt(cdBarras), new Exemplar(Integer.parseInt(cdBarras), Integer.parseInt(exemplar),
                 LocalDate.parse(dataAquisicaoExemplar, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
     }
 
@@ -160,10 +160,7 @@ public class Livro implements Serializable {
             return false;
         }
         Livro other = (Livro) obj;
-        if (idLivro != other.idLivro) {
-            return false;
-        }
-        return true;
+        return idLivro == other.idLivro;
     }
 
     @Override

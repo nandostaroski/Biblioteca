@@ -52,10 +52,7 @@ public class Aluno implements Serializable {
             return false;
         }
         Aluno other = (Aluno) obj;
-        if (codAluno != other.codAluno) {
-            return false;
-        }
-        return true;
+        return codAluno == other.codAluno;
     }
 
     @Override
