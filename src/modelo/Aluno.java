@@ -35,6 +35,11 @@ public class Aluno implements Serializable {
         return codAluno;
     }
 
+    public void setCodAluno(long codAluno) {
+        this.codAluno = codAluno;
+    }
+    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -53,4 +58,8 @@ public class Aluno implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Aluno{" + "cpf=" + cpf + ", nome=" + nome + '}';
+    }
 }

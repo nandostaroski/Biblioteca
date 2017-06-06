@@ -35,6 +35,11 @@ public class Emprestimo implements Serializable {
         return cdEmprestimo;
     }
 
+    public void setCdEmprestimo(long cdEmprestimo) {
+        this.cdEmprestimo = cdEmprestimo;
+    }
+    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
