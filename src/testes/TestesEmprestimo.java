@@ -22,19 +22,15 @@ public class TestesEmprestimo {
         System.out.println("Criando Livro: " + livro);
         Aluno aluno = new Aluno("123", "Fernando");
         System.out.println("Criando Aluno: " + aluno);
-        Emprestimo emprestimo = new Emprestimo();
+        Emprestimo emprestimo = new Emprestimo(aluno, livro, LocalDate.now(), 123);
         System.out.println("Criando emprestimo: " + emprestimo);
-
-        System.out.println("Gravar Emprestimo");
-        emprestimo.gravarEmprestimo(aluno, livro);
-        System.out.println("Emprestimo gravado: " + emprestimo);
 
         dao.salvarEmprestimo(emprestimo);
         System.out.println("Salvo no Repositorio com sucesso.");
         System.out.println("Fim teste criarEmprestimo. \r\n");
     }
 
-    public void testeBuscaEmprestimo() throws IOException {
+    public void testeBuscaEmprestimo() throws IOException, Exception {
         System.out.println("Teste buscaEmprestimo");
 
         dao.removerEmprestimo(12345);
@@ -45,9 +41,13 @@ public class TestesEmprestimo {
         } else {
             System.out.println("Não encontrou o emprestimo.");
         }
-        
-        emprestimo = new Emprestimo(12345);
-                
+
+        Livro livro = new Livro(0, 0, 0, LocalDate.MAX, LocalDate.MIN, "clas", "area", "autores", "titulo", "1990", "123456", "123", 0);
+
+        Aluno aluno = new Aluno("123", "Fernando");
+
+        emprestimo = new Emprestimo(aluno, livro, LocalDate.now(), 12345);
+
         System.out.println("Criando Emprestimo: " + emprestimo);
         dao.salvarEmprestimo(emprestimo);
 

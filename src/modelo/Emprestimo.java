@@ -14,14 +14,21 @@ public class Emprestimo implements Serializable {
     private boolean quitado = false;
     private final int maxDiasEmprestimo = 14;
 
-    public Emprestimo() {
-        cdEmprestimo = System.currentTimeMillis();
+    public Emprestimo(Aluno aluno, Livro livro, LocalDate dtEmprestimo, long cdEmprestimo) throws Exception {
+        if (dtEmprestimo == null) {
+            throw new Exception("Data do empréstimo, não pode ser nula.");
+        }
+        if (aluno == null || livro == null) {
+            throw new Exception(aluno == null ? "Aluno" : "Livro" + " deve ser informado para gravar o emprestimo.");
+        }
+
+        this.aluno = aluno;
+        this.livro = livro;
+        this.dtEmprestimo = dtEmprestimo;
+        this.cdEmprestimo = cdEmprestimo;
+
     }
 
-    public Emprestimo(long cdEmprestimo) {
-        this.cdEmprestimo = cdEmprestimo;
-    }
-    
     public Aluno getAluno() {
         return aluno;
     }
@@ -60,7 +67,7 @@ public class Emprestimo implements Serializable {
         }
         return atraso;
     }
-    
+
     public void quitarEmprestimo() throws Exception {
         if (dtEmprestimo == null) {
             throw new Exception("Registro de emprestimo ainda não realizado.");
@@ -74,20 +81,6 @@ public class Emprestimo implements Serializable {
         quitado = true;
     }
 
-    public void gravarEmprestimo(Aluno aluno, Livro livro) throws Exception {
-        if (dtEmprestimo != null) {
-            throw new Exception("Registro de emprestimo já realizado. Não é possível modifica-lo.");
-        }
-
-        if (aluno == null || livro == null) {
-            throw new Exception(aluno == null ? "Aluno" : "Livro" + " deve ser informado para gravar o emprestimo.");
-        }
-
-        this.aluno = aluno;
-        this.livro = livro;
-        this.dtEmprestimo = LocalDate.now();
-    }
-
     public void devolucaoLivro() throws Exception {
         if (dtEmprestimo == null) {
             throw new Exception("Registro de emprestimo ainda não realizado.");
@@ -98,6 +91,7 @@ public class Emprestimo implements Serializable {
 
         dtDevolucao = LocalDate.now();
 
+        // Só quita a devolução se devolver no prazo
         if (Period.between(dtEmprestimo, dtDevolucao).getDays() <= maxDiasEmprestimo) {
             quitado = true;
         }
@@ -122,5 +116,5 @@ public class Emprestimo implements Serializable {
     public String toString() {
         return "Emprestimo{" + "cdEmprestimo=" + cdEmprestimo + ", aluno=" + aluno + ", livro=" + livro + ", dtEmprestimo=" + dtEmprestimo + ", dtDevolucao=" + dtDevolucao + ", quitado=" + quitado + '}';
     }
-    
+
 }
