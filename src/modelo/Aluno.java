@@ -4,13 +4,19 @@ import java.io.Serializable;
 
 public class Aluno implements Serializable {
 
-    private long codAluno;
+    private final long codAluno;
     private String cpf;
     private String nome;
 
     public Aluno(String cpf, String nome) {
         super();
         codAluno = System.currentTimeMillis();
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+    public Aluno(String cpf, String nome, long codAluno) {
+        super();
+        this.codAluno = codAluno;
         this.cpf = cpf;
         this.nome = nome;
     }
@@ -33,10 +39,6 @@ public class Aluno implements Serializable {
 
     public long getCodAluno() {
         return codAluno;
-    }
-
-    public void setCodAluno(long codAluno) {
-        this.codAluno = codAluno;
     }
     
 

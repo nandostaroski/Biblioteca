@@ -5,29 +5,43 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import modelo.Aluno;
+import modelo.Emprestimo;
 
 import modelo.Exemplar;
 import modelo.Livro;
 
-public class ImportacaoLivros {
+public class CriarRepositorios {
 
     public static void main(String[] args) {
-        dao.binario.LivroDao daoBin = new dao.binario.LivroDao();
-        dao.xml.LivroDao daoXML = new dao.xml.LivroDao();
+        dao.binario.LivroDao daoLivroBin = new dao.binario.LivroDao();
+        dao.binario.AlunoDao daoAlunoBin = new dao.binario.AlunoDao();
+        dao.binario.EmprestimoDao daoEmprestimoBin = new dao.binario.EmprestimoDao();
+        
+        dao.xml.LivroDao daoLivroXML = new dao.xml.LivroDao();
+        dao.xml.AlunoDao daoAlunoXML = new dao.xml.AlunoDao();
+        dao.xml.EmprestimoDao daoEmprestimoXML = new dao.xml.EmprestimoDao();
         try {
-            HashMap<Integer, Livro> importarLivros = importarLivros();
-            daoBin.salvar(importarLivros);
-            daoXML.salvar(importarLivros);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ImportacaoLivros.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ImportacaoLivros.class.getName()).log(Level.SEVERE, null, ex);
+            HashMap<Integer, Livro> livros = importarLivros();
+            daoLivroBin.salvar(livros);
+            daoLivroXML.salvar(livros);
+            
+            HashMap<Long, Aluno> alunos = new HashMap<>();
+            daoAlunoBin.salvar(alunos);
+            daoAlunoXML.salvar(alunos);
+            
+            HashMap<Long, Emprestimo> emprestimos = new HashMap<>();
+            daoEmprestimoXML.salvar(emprestimos);
+            daoEmprestimoBin.salvar(emprestimos);
+                    
+        } catch (FileNotFoundException e) {
+            System.out.println("ERRO: "+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("ERRO: "+e.getMessage());
         }
     }
 
-    public static HashMap<Integer, Livro> importarLivros() throws FileNotFoundException {
+    private static HashMap<Integer, Livro> importarLivros() throws FileNotFoundException {
 
         HashMap<Integer, Livro> livros = new HashMap<>();
         String pastaDestino = "livros.csv";

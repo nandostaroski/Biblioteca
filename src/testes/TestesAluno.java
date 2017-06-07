@@ -42,8 +42,7 @@ public class TestesAluno {
         } else {
             System.out.println("Não encontrou o aluno.");
         }
-        aluno = new Aluno("0000654", "Aluno Teste");
-        aluno.setCodAluno(12345);
+        aluno = new Aluno("0000654", "Aluno Teste", 12345);
         System.out.println("Criando Aluno: " + aluno);
         dao.salvarAluno(aluno);
 
