@@ -1,4 +1,4 @@
-package modelo;
+package biblioteca.modelo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -70,6 +70,11 @@ public class Exemplar implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Exemplar{" + "cdBarras=" + cdBarras + ", exemplar=" + exemplar + ", dataAquisicaoExemplar=" + dataAquisicaoExemplar + '}';
     }
 
 }

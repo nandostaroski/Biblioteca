@@ -1,15 +1,15 @@
-package dao.xml;
+package biblioteca.dao.binario;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import modelo.Emprestimo;
-import dao.interfaces.EmprestimoDAOInterface;
+import biblioteca.modelo.Emprestimo;
+import biblioteca.dao.interfaces.EmprestimoDAOInterface;
 
 public class EmprestimoDao extends DAOGenerico implements EmprestimoDAOInterface {
 
     private final String endereco = System.getProperty("user.home") + System.getProperty("file.separator")
-            + "emprestimos.xml";
+            + "emprestimos.bin";
 
     @Override
     public HashMap<Long, Emprestimo> ler() throws IOException {

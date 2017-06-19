@@ -1,8 +1,8 @@
-package testes;
+package biblioteca.testes;
 
-import dao.interfaces.AlunoDAOInterface;
+import biblioteca.dao.interfaces.AlunoDAOInterface;
 import java.io.IOException;
-import modelo.Aluno;
+import biblioteca.modelo.Aluno;
 
 
 public class TestesAluno {

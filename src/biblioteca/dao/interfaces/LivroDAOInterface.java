@@ -1,8 +1,9 @@
-package dao.interfaces;
+package biblioteca.dao.interfaces;
 
 import java.io.IOException;
 
-import modelo.Livro;
+import biblioteca.modelo.Livro;
+import java.util.HashMap;
 
 public interface LivroDAOInterface {
 
@@ -13,4 +14,6 @@ public interface LivroDAOInterface {
     public void removerLivro(Livro livro) throws IOException;
 
     public void removerLivro(int idLivro) throws IOException;
+    
+    public HashMap<Integer, Livro>  buscarLivros() throws IOException;
 }

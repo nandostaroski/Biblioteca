@@ -1,4 +1,4 @@
-package dao.interfaces;
+package biblioteca.dao.interfaces;
 
 import java.io.IOException;
 import java.util.HashMap;

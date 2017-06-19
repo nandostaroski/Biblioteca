@@ -1,4 +1,4 @@
-package dao.binario;
+package biblioteca.dao.binario;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-import dao.interfaces.DAOInterface;
+import biblioteca.dao.interfaces.DAOInterface;
 
 public abstract class DAOGenerico implements DAOInterface {
 

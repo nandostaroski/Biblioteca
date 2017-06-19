@@ -1,8 +1,8 @@
-package modelo;
+package biblioteca.modelo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class Emprestimo implements Serializable {
 
@@ -12,7 +12,7 @@ public class Emprestimo implements Serializable {
     private LocalDate dtEmprestimo;
     private LocalDate dtDevolucao;
     private boolean quitado = false;
-    private final int maxDiasEmprestimo = 14;
+    private final long maxDiasEmprestimo = 14;
 
     public Emprestimo(Aluno aluno, Livro livro, LocalDate dtEmprestimo, long cdEmprestimo) throws Exception {
         if (dtEmprestimo == null) {
@@ -57,10 +57,10 @@ public class Emprestimo implements Serializable {
         return quitado;
     }
 
-    public int getDiasAtraso() {
-        int atraso = 0;
+    public long getDiasAtraso() {
+        long atraso = 0;
         if (dtEmprestimo != null) {
-            int diasEmprestimo = Period.between(dtEmprestimo, dtDevolucao != null ? dtDevolucao : LocalDate.now()).getDays();
+            long diasEmprestimo = ChronoUnit.DAYS.between(dtEmprestimo, dtDevolucao != null ? dtDevolucao : LocalDate.now());
             if (diasEmprestimo > maxDiasEmprestimo) {
                 atraso = diasEmprestimo - maxDiasEmprestimo;
             }
@@ -92,7 +92,7 @@ public class Emprestimo implements Serializable {
         dtDevolucao = LocalDate.now();
 
         // Só quita a devolução se devolver no prazo
-        if (Period.between(dtEmprestimo, dtDevolucao).getDays() <= maxDiasEmprestimo) {
+        if (ChronoUnit.DAYS.between(dtEmprestimo, dtDevolucao) <= maxDiasEmprestimo) {
             quitado = true;
         }
     }

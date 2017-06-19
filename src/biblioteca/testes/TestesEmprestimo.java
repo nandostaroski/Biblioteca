@@ -1,11 +1,11 @@
-package testes;
+package biblioteca.testes;
 
-import dao.interfaces.EmprestimoDAOInterface;
+import biblioteca.dao.interfaces.EmprestimoDAOInterface;
 import java.io.IOException;
 import java.time.LocalDate;
-import modelo.Aluno;
-import modelo.Emprestimo;
-import modelo.Livro;
+import biblioteca.modelo.Aluno;
+import biblioteca.modelo.Emprestimo;
+import biblioteca.modelo.Livro;
 
 public class TestesEmprestimo {
 

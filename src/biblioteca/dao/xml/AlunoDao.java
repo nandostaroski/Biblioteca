@@ -1,10 +1,10 @@
-package dao.xml;
+package biblioteca.dao.xml;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import modelo.Aluno;
-import dao.interfaces.AlunoDAOInterface;
+import biblioteca.modelo.Aluno;
+import biblioteca.dao.interfaces.AlunoDAOInterface;
 
 public class AlunoDao extends DAOGenerico implements AlunoDAOInterface {
 

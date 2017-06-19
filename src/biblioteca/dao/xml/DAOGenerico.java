@@ -1,4 +1,4 @@
-package dao.xml;
+package biblioteca.dao.xml;
 
 import java.beans.Encoder;
 import java.beans.Expression;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import dao.interfaces.DAOInterface;
+import biblioteca.dao.interfaces.DAOInterface;
 
 public abstract class DAOGenerico implements DAOInterface {
 

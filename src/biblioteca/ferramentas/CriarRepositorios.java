@@ -1,26 +1,25 @@
-package ferramentas;
+package biblioteca.ferramentas;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import modelo.Aluno;
-import modelo.Emprestimo;
-
-import modelo.Exemplar;
-import modelo.Livro;
+import biblioteca.modelo.Aluno;
+import biblioteca.modelo.Emprestimo;
+import biblioteca.modelo.Exemplar;
+import biblioteca.modelo.Livro;
 
 public class CriarRepositorios {
 
     public static void main(String[] args) {
-        dao.binario.LivroDao daoLivroBin = new dao.binario.LivroDao();
-        dao.binario.AlunoDao daoAlunoBin = new dao.binario.AlunoDao();
-        dao.binario.EmprestimoDao daoEmprestimoBin = new dao.binario.EmprestimoDao();
+        biblioteca.dao.binario.LivroDao daoLivroBin = new biblioteca.dao.binario.LivroDao();
+        biblioteca.dao.binario.AlunoDao daoAlunoBin = new biblioteca.dao.binario.AlunoDao();
+        biblioteca.dao.binario.EmprestimoDao daoEmprestimoBin = new biblioteca.dao.binario.EmprestimoDao();
         
-        dao.xml.LivroDao daoLivroXML = new dao.xml.LivroDao();
-        dao.xml.AlunoDao daoAlunoXML = new dao.xml.AlunoDao();
-        dao.xml.EmprestimoDao daoEmprestimoXML = new dao.xml.EmprestimoDao();
+        biblioteca.dao.xml.LivroDao daoLivroXML = new biblioteca.dao.xml.LivroDao();
+        biblioteca.dao.xml.AlunoDao daoAlunoXML = new biblioteca.dao.xml.AlunoDao();
+        biblioteca.dao.xml.EmprestimoDao daoEmprestimoXML = new biblioteca.dao.xml.EmprestimoDao();
         try {
             HashMap<Integer, Livro> livros = importarLivros();
             daoLivroBin.salvar(livros);
