@@ -65,8 +65,9 @@ public class TestesLivro {
         System.out.println("Fim teste buscaLivro. \r\n");
     }
 
+    
     public void testeMaiorTempoEntreDatas() throws IOException {
-
+        System.out.println("Teste testeMaiorTempoEntreDatas:");
         HashMap<Integer, Livro> livros = dao.buscarLivros();
         Livro livro = null;
         int codExemplar = 0;
@@ -74,34 +75,47 @@ public class TestesLivro {
             Livro livroAtual = entry.getValue();
             if (livro == null) {
                 livro = livroAtual;
-                codExemplar = exemplarMaisAntigo(livro);
+                codExemplar = buscaCodExemplarMaisAntigo(livro);
             } else {
-                int exemplarMaisAntigoLivroAtual = exemplarMaisAntigo(livroAtual);
-                if (periodoEntre(livro, livro.getExemplares().get(codExemplar)) < periodoEntre(livroAtual, livroAtual.getExemplares().get(exemplarMaisAntigoLivroAtual))) {
+                int exemplarMaisAntigoDoLivroAtual = buscaCodExemplarMaisAntigo(livroAtual);
+                if (periodoEntreAquisicaoCadastro(livro, livro.getExemplares().get(codExemplar)) < periodoEntreAquisicaoCadastro(livroAtual, livroAtual.getExemplares().get(exemplarMaisAntigoDoLivroAtual))) {
                     livro = livroAtual;
-                    codExemplar = exemplarMaisAntigoLivroAtual;
+                    codExemplar = exemplarMaisAntigoDoLivroAtual;
                 }
             }
         }
         System.out.println("Livro com maior diferença entre data de cadastro e data de aquisição do exemplar: ");
         System.out.println(livro);
         System.out.println(livro.getExemplares().get(codExemplar));
-        System.out.println("Diferença de " + periodoEntre(livro, livro.getExemplares().get(codExemplar)) + " dias.\r\n\r\n");
-
+        System.out.println("Diferença de " + periodoEntreAquisicaoCadastro(livro, livro.getExemplares().get(codExemplar)) + " dias.");
+        System.out.println("Fim teste testeMaiorTempoEntreDatas. \r\n");
     }
 
-    private long periodoEntre(Livro livro, Exemplar exemplar) {
+    /**
+     * @Autor fstaroski
+     * @param livro
+     * @param exemplar
+     * @return a quantidade de dias entre A data de aquisição do Exemplar e data
+     * de Cadastro do Sistema do livro
+     */
+    private long periodoEntreAquisicaoCadastro(Livro livro, Exemplar exemplar) {
         return ChronoUnit.DAYS.between(livro.getDataCadastroSistema(), exemplar.getDataAquisicaoExemplar());
     }
 
-    private int exemplarMaisAntigo(Livro livro) {
+    /**
+     *
+     * @param livro
+     * @return codExemplar do exemplar com a maior diferença entre A data de
+     * aquisição do Exemplar e data de Cadastro do Sistema do livro
+     */
+    private int buscaCodExemplarMaisAntigo(Livro livro) {
         long periodo = Integer.MIN_VALUE;
         int codExemplar = -1;
         Set<Map.Entry<Integer, Exemplar>> exemplares = livro.getExemplares().entrySet();
         for (Map.Entry<Integer, Exemplar> entry1 : exemplares) {
             Integer codExemplarAtual = entry1.getKey();
             Exemplar exemplarAtual = entry1.getValue();
-            long periodoAtual = periodoEntre(livro, exemplarAtual);
+            long periodoAtual = periodoEntreAquisicaoCadastro(livro, exemplarAtual);
             if (periodo < periodoAtual) {
                 periodo = periodoAtual;
                 codExemplar = codExemplarAtual;

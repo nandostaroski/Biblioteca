@@ -1,7 +1,7 @@
 package biblioteca.app;
 
 import biblioteca.dao.binario.AlunoDao;
-import biblioteca.dao.xml.EmprestimoDao;
+import biblioteca.dao.binario.EmprestimoDao;
 import biblioteca.dao.binario.LivroDao;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -62,8 +62,8 @@ public class App {
             testesEmprestimo.testeBuscaEmprestimo();
         } catch (IOException e) {
             System.out.println("ERRO: " + e.getMessage());
-        } catch (Exception ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println("ERRO: " + e.getMessage());
         }
 
     }
